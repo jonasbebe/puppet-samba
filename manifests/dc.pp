@@ -40,7 +40,7 @@ class samba::dc(
   $domain                                                         = undef,
   $realm                                                          = undef,
   $dnsbackend                                                     = 'internal',
-  Optional[Stdlib::Ip_address] $dnsforwarder                      = undef,
+  Optional[Stdlib::IP::Address] $dnsforwarder                      = undef,
   $adminpassword                                                  = undef,
   $role                                                           = 'dc',
   Stdlib::Absolutepath $targetdir                                 = '/var/lib/samba/',

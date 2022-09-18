@@ -36,8 +36,8 @@
 # Copyright 2015 Pierre-Francois Carpentier, unless otherwise noted.
 #
 
-class samba::classic(
-  $smbname                        = undef,
+class samba::classic (
+  String[1, 15] $smbname          = undef,
   $domain                         = undef,
   $realm                          = undef,
   $strictrealm                    = true,
@@ -68,7 +68,6 @@ class samba::classic(
     fail('realm must be a valid domain')
   }
 
-  validate_slength($smbname, 15)
   unless is_domain_name("${smbname}.${realm}"){
     fail('smbname must be a valid domain')
   }
@@ -121,7 +120,7 @@ class samba::classic(
         name   => $samba::params::packagesambansswinbind
       }
 
-      augeas{'samba nsswitch group':
+      augeas{ 'samba nsswitch group':
         context => "/files/${samba::params::nsswitchconffile}/",
         changes => [
           'ins service after "*[self::database = \'group\']/service[1]/"',
@@ -131,7 +130,7 @@ class samba::classic(
         lens    => 'Nsswitch.lns',
         incl    => $samba::params::nsswitchconffile,
       }
-      augeas{'samba nsswitch passwd':
+      augeas{ 'samba nsswitch passwd':
         context => "/files/${samba::params::nsswitchconffile}/",
         changes => [
           'ins service after "*[self::database = \'passwd\']/service[1]/"',
