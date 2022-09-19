@@ -50,7 +50,7 @@ class samba::params(
           $sambaoptstmpl          = "${module_name}/debian-samba.erb"
           $smbconffile            = '/etc/samba/smb.conf'
           $krbconffile            = '/etc/krb5.conf'
-          $packagepyyaml          = 'python-yaml'
+          $packagepyyaml          = 'python3-yaml'
       }
       'Archlinux': {
           $cleanup                = undef
