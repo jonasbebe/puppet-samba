@@ -90,7 +90,7 @@ class samba::params(
     'dsdb_password_json_audit',    'ldb',      'tevent',       'auth_audit', 
     'dsdb_transaction_audit',      'auth',     'winbind',      'vfs',
     'dsdb_transaction_json_audit', 'kerberos', 'dsdb_audit',   'rpc_parse',
-    'idmap',                       'dns',      'sam'
+    'idmap',                       'dns',      'sam',
     ]
 }
 
