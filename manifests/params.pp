@@ -82,10 +82,15 @@ class samba::params(
   $sambacreatehome  = '/usr/local/bin/smb-create-home.sh'
 
   $logclasslist =  [
-    'all',     'tdb',     'printdrivers', 'lanman',   'smb',
-    'rpc_srv', 'rpc_cli', 'passdb',       'sam',      'auth',
-    'winbind', 'vfs',     'idmap',        'quota',    'acls',
-    'locking', 'msdfs',   'dmapi',        'registry', 'rpc_parse',
+    'all',                         'tdb',      'printdrivers', 'lanman',
+    'quota',                       'acls',     'locking',      'msdfs',
+    'auth_json_audit',             'smb',      'smb2',         'smb2_credits',
+    'dsdb_json_audit',             'rpc_srv',  'rpc_cli',      'passdb',
+    'dsdb_password_audit',         'dmapi',    'registry',     'scavenger',
+    'dsdb_password_json_audit',    'ldb',      'tevent',       'auth_audit', 
+    'dsdb_transaction_audit',      'auth',     'winbind',      'vfs',
+    'dsdb_transaction_json_audit', 'kerberos', 'dsdb_audit',   'rpc_parse',
+    'idmap',                       'dns',      'sam'
     ]
 }
 
