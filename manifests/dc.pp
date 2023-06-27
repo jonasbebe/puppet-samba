@@ -38,9 +38,9 @@
 
 class samba::dc(
   $domain                                                         = undef,
-  $realm                                                          = undef,
+  Optional[Stdlib::Fqdn] $realm                                   = undef,
   $dnsbackend                                                     = 'internal',
-  Optional[Stdlib::IP::Address] $dnsforwarder                      = undef,
+  Optional[Stdlib::IP::Address] $dnsforwarder                     = undef,
   $adminpassword                                                  = undef,
   $role                                                           = 'dc',
   Stdlib::Absolutepath $targetdir                                 = '/var/lib/samba/',
@@ -103,10 +103,6 @@ must be in ["internal", "bindFlat", "bindDLZ"]')
 
   unless member($checkrole, $role){
     fail("role must be in [${checkrolestr}]")
-  }
-
-  unless is_domain_name($realm){
-    fail('realm must be a valid domain')
   }
 
   $tmparr = split($realm, '[.]')
