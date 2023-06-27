@@ -4,15 +4,14 @@ define samba::log(
   Integer[0,10] $sambaloglevel,
   Boolean $logtosyslog,
   $settingsignored,
-  $sambaclassloglevel = undef,
+  Optional[Hash] $sambaclassloglevel = undef,
 ) {
 
   $classlist = $samba::params::logclasslist
   $classliststr = join($classlist, ', ')
 
   if $sambaclassloglevel != undef {
-    unless is_hash($sambaclassloglevel)
-    and difference(keys($sambaclassloglevel), $classlist) == [] {
+    unless difference(keys($sambaclassloglevel), $classlist) == [] {
       fail("sambaclassloglevel must be a hash with keys in [${classliststr}]")
     }
     $logadditional = template("${module_name}/log.erb")
