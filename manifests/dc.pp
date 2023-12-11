@@ -37,26 +37,26 @@
 #
 
 class samba::dc(
-  $domain                                                         = undef,
-  $realm                                                          = undef,
-  $dnsbackend                                                     = 'internal',
-  Optional[Stdlib::IP::Address] $dnsforwarder                      = undef,
-  $adminpassword                                                  = undef,
-  $role                                                           = 'dc',
-  Stdlib::Absolutepath $targetdir                                 = '/var/lib/samba/',
-  Enum['2003', '2008', '2008 R2', '2012', '2012 R2'] $domainlevel = '2003',
-  $domainprovargs                                                 = '',
-  $sambaloglevel                                                  = 1,
-  $ip                                                             = undef,
-  $logtosyslog                                                    = false,
-  $sambaclassloglevel                                             = undef,
-  $globaloptions                                                  = {},
-  $netlogonoptions                                                = {},
-  $sysvoloptions                                                  = {},
-  $globalabsentoptions                                            = [],
-  $netlogonabsentoptions                                          = [],
-  $sysvolabsentoptions                                            = [],
-  Optional[String] $cleanup                                       = undef,
+  $domain                                                                 = undef,
+  $realm                                                                  = undef,
+  $dnsbackend                                                             = 'internal',
+  Optional[Stdlib::IP::Address] $dnsforwarder                             = undef,
+  $adminpassword                                                          = undef,
+  $role                                                                   = 'dc',
+  Stdlib::Absolutepath $targetdir                                         = '/var/lib/samba/',
+  Enum['2003', '2008', '2008 R2', '2012', '2012 R2', '2016'] $domainlevel = '2003',
+  $domainprovargs                                                         = '',
+  $sambaloglevel                                                          = 1,
+  $ip                                                                     = undef,
+  $logtosyslog                                                            = false,
+  $sambaclassloglevel                                                     = undef,
+  $globaloptions                                                          = {},
+  $netlogonoptions                                                        = {},
+  $sysvoloptions                                                          = {},
+  $globalabsentoptions                                                    = [],
+  $netlogonabsentoptions                                                  = [],
+  $sysvolabsentoptions                                                    = [],
+  Optional[String] $cleanup                                               = undef,
 ) inherits ::samba::params{
 
   case $dnsbackend {
@@ -91,8 +91,11 @@ must be in ["internal", "bindFlat", "bindDLZ"]')
     '2012 R2': {
       $strdomainlevel = '2012_R2'
     }
+    '2016': {
+      $strdomainlevel = '2016'
+    }
     default: {
-      fail('unsupported domain level, must be in ["2003", "2008", "2008 R2", "2012", "2012 R2"]')
+      fail('unsupported domain level, must be in ["2003", "2008", "2008 R2", "2012", "2012 R2", "2016"]')
     }
   }
 
