@@ -108,10 +108,6 @@ must be in ["internal", "bindFlat", "bindDLZ"]')
     fail("role must be in [${checkrolestr}]")
   }
 
-  unless is_domain_name($realm){
-    fail('realm must be a valid domain')
-  }
-
   $tmparr = split($realm, '[.]')
   unless $domain == $tmparr[0] {
     fail('domain must be the fist part of realm, \
