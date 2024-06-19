@@ -29,7 +29,7 @@ class samba::params(
       }
       'Debian': {
           $cleanup                = 'pkill -9 smbd; pkill -9 nmbd; pkill -9 samba; rm -rf /var/run/samba; /bin/true'
-          $packagesambadc         = 'samba'
+          $packagesambadc         = 'samba-ad-dc'
           $packagesambaclassic    = 'samba'
           $packagesambawinbind    = 'winbind'
           $packagesambansswinbind = 'libnss-winbind'
