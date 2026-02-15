@@ -39,7 +39,7 @@ class samba::params(
           if $facts['os']['name'] == 'Ubuntu' {
             $servicesmb           = 'smbd'
           } elsif ($facts['os']['name'] == 'Debian') and (versioncmp($facts['os']['release']['full'], '8') >= 0) {
-            $servicesmb
+            $servicesmb           = 'smbd'
           } else {
             $servicesmb           = 'samba'
           }
